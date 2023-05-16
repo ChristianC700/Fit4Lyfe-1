@@ -2,7 +2,9 @@ package com.example.Fit4Lyfe.controllers;
 
 import com.example.Fit4Lyfe.models.User;
 import com.example.Fit4Lyfe.repositories.UserRepository;
+import com.example.Fit4Lyfe.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,13 +13,11 @@ import java.util.List;
 @RestController //annotation which injects this bean into the Spring Container/Application Context
 @RequestMapping("/api/v1/users") //path to UserController
 public class UserController {
-    @Autowired //injects userRepository bean from the application context
-    private UserRepository userRepository;
+    @Autowired //injects userService bean from the application context
+    private UserService userService;
 
     @GetMapping("")
-    public List<User> getAllUsers() {
-        List<User> users = userRepository.findAll();
-
-        return users;
+    public ResponseEntity<?> getAllUsers() {
+        return userService.getAllUsers();
     }
 }
