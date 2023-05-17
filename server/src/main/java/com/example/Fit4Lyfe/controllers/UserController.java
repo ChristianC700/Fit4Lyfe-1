@@ -25,10 +25,16 @@ public class UserController {
     @GetMapping("")
     @SuppressWarnings("UnusedReturnValue")
     public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
+    }
+
+    @GetMapping("/{id}")
+    @SuppressWarnings("UnusedReturnValue")
+    public ResponseEntity<?> getUserById(@PathVariable long id) {
         try {
-            return ResponseEntity.ok().body(userService.getAllUsers());
+            return ResponseEntity.ok().body(userService.getUserById(id));
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.badRequest().body("No users found.");
+            return ResponseEntity.badRequest().body("User with id: " + id + " not found.");
         }
     }
 }

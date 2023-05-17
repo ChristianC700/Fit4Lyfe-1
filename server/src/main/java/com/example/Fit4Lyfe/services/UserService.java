@@ -31,15 +31,12 @@ public class UserService {
         return this.mapToUserResponse(user);
     }
     public List<UserResponse> getAllUsers() {
-        List<User> users = userRepository.findAll();
+        log.info("Successfully retrieved all users.");
+        return userRepository.findAll().stream().map(this::mapToUserResponse).toList();
+    }
 
-        if (users.isEmpty()) {
-            log.error("No users found.");
-            throw new EntityNotFoundException("No users found.");
-        }
-
-        log.info("Successfully created user.");
-        return users.stream().map(this::mapToUserResponse).toList();
+    public UserResponse getUserById(long id) {
+        return userRepository.findById(id).map(this::mapToUserResponse).orElseThrow(EntityNotFoundException::new);
     }
 
     private UserResponse mapToUserResponse(User user) {
