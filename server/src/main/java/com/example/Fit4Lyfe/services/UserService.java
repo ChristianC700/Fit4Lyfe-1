@@ -5,6 +5,7 @@ import com.example.Fit4Lyfe.dtos.UserResponse;
 import com.example.Fit4Lyfe.models.User;
 import com.example.Fit4Lyfe.repositories.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class UserService {
     @Autowired //injects userRepository bean from the application context
     private UserRepository userRepository;
 
+    @Transactional
     public UserResponse createUser(UserRequest userRequest) {
         User user = User.builder()
                 .firstName(userRequest.getFirstName())
