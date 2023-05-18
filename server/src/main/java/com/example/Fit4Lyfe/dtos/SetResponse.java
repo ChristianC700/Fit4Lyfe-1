@@ -12,12 +12,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponse {
+public class SetResponse {
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private double weight;
-    private LocalDate dateOfBirth;
-    private double height;
+    private int numOfReps;
 }

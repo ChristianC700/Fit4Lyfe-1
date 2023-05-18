@@ -3,6 +3,9 @@ package com.example.Fit4Lyfe.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Entity(name = "User")
 @Table(name = "users")
 @AllArgsConstructor
@@ -24,4 +27,14 @@ public class User {
 
     @Column(name = "Email")
     private String email;
+
+    @Column(name = "Weight")
+    private double weight;
+
+    @Column(name = "DOB")
+    private LocalDate dateOfBirth;
+
+    @Column(name = "Height")
+    private double height;
+
 }
